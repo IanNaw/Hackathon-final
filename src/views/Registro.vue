@@ -17,27 +17,25 @@
     </div>
     <div class="col-xl-4 col-l-5 col-md-6 col-sm-12">
       <header class="Header row">
-        <p class="Iniciar-Sesion col-6" @click="setForm('login')">
-          Iniciar Sesion
-        </p>
-        <p class="Registrarse col-6" @click="setForm('registro')">
-          Registrarse
-        </p>
+        <div class="Iniciar-Sesion col-6">Iniciar Sesion</div>
+        <div @click="goRegister" class="Registrarse col-6">Registrarse</div>
         <div class="row">
-          <!-- <InicioSesionVue v-if="login" />
-          <Registrarse v-if="login" /> -->
-          <form class="Iniciar-Form" action="">
+          <form class="Iniciar-Form">
             <input
+              v-model="user.email"
               class="Inicio-Input col-12"
               type="text"
               placeholder="Correo electrónico"
             />
             <input
+              v-model="user.password"
               class="Inicio-Input col-12"
               type="text"
               placeholder="Contraseña"
             />
-            <input class="Registro-Submit col-12" type="submit" />
+            <button @click="login" type="submit" class="Registro-Submit col-12">
+              Enviar
+            </button>
           </form>
         </div>
       </header>
@@ -46,26 +44,44 @@
 </template>
 
 <script>
-// import InicioSesionVue from "./InicioSesion.vue";
-// import Registrarse from "./Registrarse.vue";
-// export default {
-//   name: "Registro",
-//   data() {
-//     currentComponent: InicioSesionVue, componentsArray[("foo", "bar")];
-//     login: true;
-//   },
+export default {
+  name: "Registro",
+  data() {
+    return {
+      user: {},
 
-//   components: {
-//     Registrarse,
-//     InicioSesionVue,
-//   },
+      foobar: null,
+    };
+  },
 
-//   methods: {
-//     setForm: function (element) {
-//       element === "login" ? (this.login = true) : (this.login = false);
-//     },
-//   },
-// };
+  methods: {
+    // submit() {
+    //   //if you want to send any data into server before redirection then you can do it here
+    //   this.$router.push("/" + this.foobar);
+    // },
+
+    goRegister: function () {
+      this.$router.push({ path: "/registrarse" });
+    },
+
+    async login(e) {
+      e.preventDefault();
+      console.log(this.user);
+      const post = await fetch(
+        "https://djangoretofinal.herokuapp.com/auth/login/",
+        {
+          method: "POST",
+          body: JSON.stringify(this.user),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await post.json();
+      console.log(data);
+    },
+  },
+};
 </script>
 
 

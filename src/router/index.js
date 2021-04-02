@@ -41,6 +41,13 @@ const routes = [
 
     component: () => import('../views/Comprado.vue')
   },
+
+  {
+    path: '/registrarse',
+    name: 'Registrarse',
+
+    component: () => import('../views/Registrarse.vue')
+  },
 ]
 
 const router = createRouter({
