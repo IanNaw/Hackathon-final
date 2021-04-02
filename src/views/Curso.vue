@@ -110,6 +110,7 @@ export default {
 
   created() {
     this.getCurso();
+    console.log(this.$root);
   },
 };
 </script>

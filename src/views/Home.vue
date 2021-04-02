@@ -81,7 +81,9 @@
       >
       <div class="Curso-Tema">{{ curso.titulo }}</div>
       <div class="Curso-Container">
-        <div class="Curso-Agregar">Agregar</div>
+        <div class="Curso-Agregar" :data-id="curso.id" @click="addToCart">
+          Agregar
+        </div>
         <router-link :to="`/curso/${curso.id}`" class="Curso-Ver"
           >Ver más</router-link
         >
@@ -188,9 +190,17 @@ export default {
         }
       );
     },
+
+    addToCart: function (e) {
+      const cursoID = Number(e.target.dataset.id);
+      const cursoIndex = this.cursos.findIndex((curso) => curso.id === cursoID);
+      console.log(cursoID, cursoIndex);
+      this.$store.state.cursos.push(this.cursos[cursoIndex]);
+    },
   },
   created() {
     this.getCurso();
+    // window.store = this.$store.state; ///////////////////////BORRAR!!!!!!!!
   },
 };
 </script>

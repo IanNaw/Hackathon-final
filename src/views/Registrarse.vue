@@ -37,25 +37,24 @@
     </div>
     <div class="col-xl-4 col-l-5 col-md-6 col-sm-12">
       <header class="Header row">
-        <p class="Iniciar-Sesion col-6" @click="setForm('login')">
-          Iniciar Sesion
-        </p>
-        <p class="Registrarse col-6" @click="setForm('registro')">
-          Registrarse
-        </p>
+        <p class="Iniciar-Sesion col-6" @click="goLogin">Iniciar Sesion</p>
+        <p class="Registrarse col-6">Registrarse</p>
         <div class="row">
           <form class="Iniciar-Form" action="">
             <input
+              v-model="user.username"
               class="Inicio-Input col-12"
               type="text"
-              placeholder="Correo electrónico"
+              placeholder="Usuario"
             />
             <input
+              v-model="user.email"
               class="Inicio-Input col-12"
               type="email"
               placeholder="Correo electrónico"
             />
             <input
+              v-model="user.password"
               class="Inicio-Input col-12"
               type="text"
               placeholder="Contraseña"
@@ -65,7 +64,11 @@
               type="text"
               placeholder="Repetir Contraseña"
             />
-            <input class="Registro-Submit col-12" type="submit" />
+            <input
+              @click="register"
+              class="Registro-Submit col-12"
+              type="submit"
+            />
           </form>
         </div>
       </header>
@@ -74,26 +77,36 @@
 </template>
 
 <script>
-import InicioSesionVue from "./InicioSesion.vue";
-import Registrarse from "./Registrarse.vue";
 export default {
   name: "Registro",
-  data() {},
+  data() {
+    return {
+      user: {},
+    };
+  },
 
   components: {},
 
   methods: {
-    async createProfile() {
+    goLogin: function () {
+      this.$router.push({ path: "/registro" });
+    },
+
+    async register(e) {
+      e.preventDefault();
+      console.log(this.user);
       const post = await fetch(
-        "https://djangoretofinal.herokuapp.com/auth/login/",
+        "https://djangoretofinal.herokuapp.com/auth/register/",
         {
           method: "POST",
-          body: JSON.stringify(this.formulario),
+          body: JSON.stringify(this.user),
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
+      const data = await post.json();
+      console.log(data);
     },
   },
 };
@@ -161,13 +174,15 @@ export default {
 
 .Iniciar-Sesion {
   height: 5vh;
-  border-bottom: solid gray 3px;
+
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .Registrarse {
+  height: 5vh;
+  border-bottom: solid gray 3px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -180,8 +195,8 @@ export default {
 }
 
 .Inicio-Input {
-  margin-top: 3vh;
-  display: block;
+  margin-top: 2.5vh;
+
   justify-content: center;
   align-items: center;
   border: solid #b9bbb6 0.5px;
@@ -198,7 +213,7 @@ export default {
   border-radius: 0.5em;
   height: 50px;
   width: 20vw;
-  margin-top: 70vh;
+  margin-top: 50vh;
   background-color: #5640ff;
 }
 </style>

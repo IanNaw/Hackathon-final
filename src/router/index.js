@@ -48,6 +48,13 @@ const routes = [
 
     component: () => import('../views/Registrarse.vue')
   },
+
+  {
+    path: '/cur',
+    name: 'Cur',
+
+    component: () => import('../views/Cur.vue')
+  },
 ]
 
 const router = createRouter({

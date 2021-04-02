@@ -4,6 +4,7 @@ export default createStore({
   state: {
     user: {},
     cursos: [],
+    color: 'azul'
   },
   mutations: {
   },

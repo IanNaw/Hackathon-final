@@ -36,6 +36,7 @@
           >Acepto las politicas de privacidad</label
         >
         <input
+          @click="mil"
           type="submit"
           class="Phone-Submit Hel-Font"
           value="Quiero Postular"
@@ -64,6 +65,17 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    mil: function () {
+      this.$store.state.color = "rojo";
+      console.log(this.$store.state.color);
+    },
+  },
+};
+</script>
 
 <style>
 body {
