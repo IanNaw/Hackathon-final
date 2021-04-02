@@ -17,9 +17,15 @@
     </div>
     <div class="col-xl-4 col-l-5 col-md-6 col-sm-12">
       <header class="Header row">
-        <p class="Iniciar-Sesion col-6">Iniciar Sesion</p>
-        <p class="Registrarse col-6">Registrarse</p>
+        <p class="Iniciar-Sesion col-6" @click="setForm('login')">
+          Iniciar Sesion
+        </p>
+        <p class="Registrarse col-6" @click="setForm('registro')">
+          Registrarse
+        </p>
         <div class="row">
+          <!-- <InicioSesionVue v-if="login" />
+          <Registrarse v-if="login" /> -->
           <form class="Iniciar-Form" action="">
             <input
               class="Inicio-Input col-12"
@@ -39,18 +45,27 @@
   </div>
 </template>
 
-.<script>
-export default {
-  name: "Registro",
-  data() {},
+<script>
+// import InicioSesionVue from "./InicioSesion.vue";
+// import Registrarse from "./Registrarse.vue";
+// export default {
+//   name: "Registro",
+//   data() {
+//     currentComponent: InicioSesionVue, componentsArray[("foo", "bar")];
+//     login: true;
+//   },
 
-  // components: {
-  //   Registrarse,
-  //   InicioSesion,
-  // },
+//   components: {
+//     Registrarse,
+//     InicioSesionVue,
+//   },
 
-  // methods: {},
-};
+//   methods: {
+//     setForm: function (element) {
+//       element === "login" ? (this.login = true) : (this.login = false);
+//     },
+//   },
+// };
 </script>
 
 

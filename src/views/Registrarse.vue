@@ -22,6 +22,6 @@
     
 <script>
 export default {
-  name: "Registrase",
+  name: "Registrarse",
 };
 </script>

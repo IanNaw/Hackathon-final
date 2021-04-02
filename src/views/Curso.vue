@@ -66,10 +66,22 @@
       <div class="Horario-Frecuencia White Bold">Frecuencia</div>
       <div class="Horario-Hora White Bold">Horario</div>
       <div class="Frecuencia-Container">
-        <div class="Frecuencia">Fortnite</div>
+        <div
+          v-for="(horario, index) in curso.horarios"
+          :key="index"
+          class="Frecuencia"
+        >
+          <p>{{ horario.frecuencia }}</p>
+        </div>
       </div>
       <div class="Hora-Container">
-        <div class="Hora">Fortite</div>
+        <div
+          v-for="(horario, index) in curso.horarios"
+          :key="index"
+          class="Hora"
+        >
+          <p>{{ horario.horario }}</p>
+        </div>
       </div>
     </div>
   </div>
