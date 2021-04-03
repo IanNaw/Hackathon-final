@@ -1,55 +1,54 @@
 <template>
-  <div id="container">
-    <input type="text" class="form-control" />
-    <div id="paypal-button"></div>
+  <div>
+    <div id="paypal-button-container"></div>
+    <div v-if="success" class="alert alert-success">
+      <strong>Success!</strong> Payment successfuly done
+    </div>
+    <div v-if="error" class="alert alert-danger">
+      <strong>Ooops!</strong> something went wrong
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-  mounted() {
-    paypal.Button.render(
-      {
-        env: "sandbox",
-        client: {
-          sandbox:
-            "ARQ-WKAkFn3g4C111Ud3lLaUAfzagvJ_pmkLKBVMASvv6nyjX3fv3j0gtBdJEDhRPznYP9sLtf9oiJfH",
-          production:
-            "EFNo9sAyqiOmnlRHsAdXiGBf6ULysEIfKUVsn58Pq6ilfGHVFn03iVvbWtfiht-irdJD_df1MECvmBC2",
-        },
-
-        locale: "en_US",
-        style: {
-          size: "medium",
-          color: "gold",
-          shape: "pill",
-        },
-
-        commit: true,
-
-        payment: function (data, actions) {
-          return actions.payment.create({
-            transactions: [
-              {
-                amount: {
-                  total: "11",
-                  currency: "USD",
-                },
-              },
-            ],
-          });
-        },
-
-        onAuthorize: function (data, actions) {
-          return actions.payment.execute().then(function () {
-            window.alert("Thank you for your purchase!");
-          });
-        },
-      },
-      "#paypal-button"
-    );
-
-    console.log("notification mounted");
-  },
+let client = {
+  sandbox:
+    "AVGYjsvVnzLVUJH7_sVhcvJtKf0PfkBsHw-s5Yy5ZBlB8iF8K_J30N_IFomPOluVlQYRMVOZhvTqsyWT",
 };
+let payment = (data, actions) => {
+  // Make a call to the REST api to create the payment
+  return actions.payment.create({
+    payment: {
+      transactions: [
+        {
+          amount: { total: this.amount, currency: "USD" },
+        },
+      ],
+    },
+  });
+};
+let onAuthorize = (data) => {
+  var data = {
+    paymentID: data.paymentID,
+    payerID: data.payerID,
+    amount: this.amount,
+  };
+  this.sendDataPaypal({ data: data })
+    .then(() => {
+      this.success = true; // to display the success message
+    })
+    .catch((err) => {
+      this.error = true; // to display  the error message
+    });
+};
+paypal.Button.render(
+  {
+    env: "sandbox", // sandbox | production
+    commit: true,
+    client,
+    payment,
+    onAuthorize,
+  },
+  "#paypal-button-container"
+);
 </script>
