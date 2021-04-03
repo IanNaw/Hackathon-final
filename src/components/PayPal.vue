@@ -51,4 +51,19 @@ paypal.Button.render(
   },
   "#paypal-button-container"
 );
+
+// export default {
+//   name: "Paypal",
+//   methods: {
+//     sendDataPaypal = async function(data) {
+//       return await fetch('http://localhost:8080/checkoutpaypal', {
+//           method: "POST",
+//           body: JSON.stringify(data),
+//           headers: {
+//             "Content-Type": "application/json",
+//           }
+//         })
+//     }
+//   },
+// };
 </script>

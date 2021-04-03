@@ -1,27 +1,12 @@
 <template>
   <div class="container">
-    <div class="jumbotron">
-      <h1>Hello, There</h1>
-      <p>Welcome to Paypal checkout Demo</p>
-      <div class="input-group">
-        <span class="input-group-addon">$</span>
-        <input
-          type="number"
-          class="form-control"
-          v-model="amount"
-          aria-label="Amount (to the nearest dollar)"
-        />
-        <span class="input-group-addon">.00</span>
-      </div>
-      <br /><br /><br />
-      <paypal :amount="amount"></paypal>
-    </div>
+    <paypal :amount="amount"></paypal>
   </div>
 </template>
 <script>
 import Paypal from "../components/PayPal.vue";
 export default {
-  name: "HelloWorld",
+  name: "Pago",
   data() {
     return {
       amount: 10,
