@@ -1,23 +1,4 @@
 
-  <form class="Iniciar-Form" action="">
-    <input
-      class="Inicio-Input col-12"
-      type="text"
-      placeholder="Correo electrónico"
-    />
-    <input
-      class="Inicio-Input col-12"
-      type="email"
-      placeholder="Correo electrónico"
-    />
-    <input class="Inicio-Input col-12" type="text" placeholder="Contraseña" />
-    <input
-      class="Inicio-Input col-12"
-      type="text"
-      placeholder="Repetir Contraseña"
-    />
-    <input class="Registro-Submit col-12" type="submit" />
-  </form>
 <template>
   <div class="C row">
     <div class="Imagen-Intro col-xl-8 col-l-7 col-md-6 col-sm-0">

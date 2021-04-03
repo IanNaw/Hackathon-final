@@ -75,7 +75,7 @@
       <img class="Respaldo-Img" src="./images/Zegelipae.png" alt="" />
     </div>
   </div>
-  <p class="Hel-Font">Conoce nuestros Programas de Especialización</p>
+
   <div class="Cursos-Grid">
     <div
       v-for="(curso, index) in cursos"
