@@ -11,5 +11,8 @@ export default createStore({
   actions: {
   },
   modules: {
+  },
+  getters: {
+    getCursos: state => state.cursos
   }
 })

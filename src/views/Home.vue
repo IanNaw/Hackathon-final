@@ -3,7 +3,12 @@
     <nav class="Header-Nav">
       <img src="./images/PachaQTec.png" alt="" class="Nav-Logo" />
       <div class="Nav-Box">
-        <img src="./images/Carrito.png" alt="" class="Nav-Car" />
+        <img
+          @click="goCarrito"
+          src="./images/Carrito.png"
+          alt=""
+          class="Nav-Car"
+        />
         <img src="./images/MenuHamburguesa.png" alt="" class="Burger-Menu" />
       </div>
     </nav>
@@ -70,21 +75,20 @@
       <img class="Respaldo-Img" src="./images/Zegelipae.png" alt="" />
     </div>
   </div>
-
+  <p class="Hel-Font">Conoce nuestros Programas de Especialización</p>
   <div class="Cursos-Grid">
     <div
       v-for="(curso, index) in cursos"
       :key="index"
       class="item"
-      style="background-image: url({{curso.imagen.url}})"
+      style="background-image: url(curso.imagen.url)"
     >
-      >
-      <div class="Curso-Tema">{{ curso.titulo }}</div>
+      <div class="Curso-Tema White">{{ curso.titulo }}</div>
       <div class="Curso-Container">
-        <div class="Curso-Agregar" :data-id="curso.id" @click="addToCart">
+        <div class="Curso-Agregar White" :data-id="curso.id" @click="addToCart">
           Agregar
         </div>
-        <router-link :to="`/curso/${curso.id}`" class="Curso-Ver"
+        <router-link :to="`/curso/${curso.id}`" class="Curso-Ver White Hel-Font"
           >Ver más</router-link
         >
       </div>
@@ -168,6 +172,9 @@ export default {
   },
 
   methods: {
+    goCarrito: function () {
+      this.$router.push({ path: "/carrito" });
+    },
     async getCurso() {
       const info = await fetch(
         "https://djangoretofinal.herokuapp.com/curso/v1/cursos/"
@@ -350,6 +357,7 @@ body {
 
 .Curso-Tema {
   display: block;
+  font-weight: 700;
 }
 
 .Curso-Container {
@@ -359,9 +367,11 @@ body {
 }
 
 .Curso-Agregar {
+  cursor: pointer;
 }
 
 .Curso-Ver {
+  text-decoration: none;
 }
 
 /*////// Mensaje //////*/

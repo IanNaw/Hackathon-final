@@ -51,7 +51,7 @@ const routes = [
 
   {
     path: '/cur',
-    name: 'Cur',
+    name: 'Registrarse',
 
     component: () => import('../views/Cur.vue')
   },

@@ -23,10 +23,10 @@
               <div class="CursoInfo-Container col-9">
                 <div class="Container-Texto">
                   <div class="Otro-Container">
-                    <div class="Titulo-Curso Hel-Font Bold">Gestion</div>
-                    <div class="Precio Hel-Font Bold">s/269.00</div>
+                    <div class="Titulo-Curso Hel-Font Bold">Registro</div>
+                    <div class="Precio Hel-Font Bold">s/ 600</div>
                   </div>
-                  <div class="Descuento Hel-Font">Dto. 25%</div>
+                  <div class="Descuento Hel-Font"></div>
                 </div>
                 <div class="Eliminar Hel-Font Bold">Eliminar</div>
               </div>
@@ -35,7 +35,7 @@
         </div>
         <div class="col-1"></div>
         <div class="col-4">
-          <div class="container">
+          <div class="Pago container">
             <div class="Subtotal">
               <h3>Sub Total</h3>
               <h3 class="Total-Num">s/600</h3>
@@ -45,9 +45,9 @@
               class="Input-Descuento"
               placeholder="Agrega un código de descuento"
             />
-            <router-link to="/paypal">
-              <button class="Comprar Bold White">Continuar</button>
-            </router-link>
+            <div class="Pagar container">
+              <paypal :amount="amount"></paypal>
+            </div>
           </div>
         </div>
       </div>
@@ -55,7 +55,32 @@
   </div>
 </template>
 
+<script>
+import Paypal from "../components/PayPal.vue";
+import { mapState } from "vuex";
 
+export default {
+  data() {
+    return {
+      amount: 10,
+      objetos: [],
+    };
+  },
+
+  computed: {
+    ...mapState(["cursos"]),
+  },
+  name: "Pago",
+
+  components: {
+    paypal: Paypal,
+  },
+
+  created() {
+    console.log(this.objetos);
+  },
+};
+</script>
 
 
 <style>
@@ -138,6 +163,9 @@
   border-bottom: solid blue;
 }
 
+.Pago {
+}
+
 .Subtotal {
   margin-top: 5vh;
   display: flex;
@@ -153,11 +181,11 @@
   border-radius: 0.5em;
 }
 
-.Comprar {
+.Pagar {
   margin-top: 10%;
   width: 100%;
-  background-color: blue;
-  border: solid blue 0.5px;
+  /* background-color: blue;
+  border: solid blue 0.5px; */
   height: 5vh;
   border-radius: 0.5em;
 }
