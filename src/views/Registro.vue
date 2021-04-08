@@ -64,7 +64,13 @@ export default {
       this.$router.push({ path: "/registrarse" });
     },
 
+    goHome: function () {
+      this.$router.push({ path: "/" });
+    },
+
     async login(e) {
+      this.$router.push({ path: "/" });
+
       e.preventDefault();
       console.log(this.user);
       const post = await fetch(
@@ -185,5 +191,11 @@ export default {
   width: 20vw;
   margin-top: 70vh;
   background-color: #5640ff;
+}
+
+@media (max-width: 375px) {
+  .Imagen-Intro {
+    display: none;
+  }
 }
 </style>

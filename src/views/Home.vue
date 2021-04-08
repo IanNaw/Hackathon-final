@@ -50,6 +50,7 @@
         class="Phone-Input Hel-Font"
         placeholder="PROGRAMA"
       />
+
       <input
         v-model="formulario.terminos"
         type="checkbox"
@@ -59,6 +60,7 @@
       <label class="CheckBox-Text Hel-Font" for="CheckBox "
         >Acepto las politicas de privacidad</label
       >
+
       <input
         type="submit"
         class="Phone-Submit Hel-Font"
@@ -81,7 +83,7 @@
       v-for="(curso, index) in cursos"
       :key="index"
       class="item"
-      style="background-image: url(curso.imagen.url)"
+      style="background-image: url('${curso.imagen.url}')"
     >
       <div class="Curso-Tema White">{{ curso.titulo }}</div>
       <div class="Curso-Container">
@@ -96,6 +98,7 @@
   </div>
 
   <div class="Mensaje-Container">
+    <img src="./images/Mujer.png" alt="" class="Mensaje-Img" />
     <div class="Mensaje">
       <div class="Mensaje-Titulo Hel-Font White">Sé parte de la comunidad</div>
       <div class="Mensaje-Texto Hel-Font White">
@@ -152,11 +155,13 @@
   </div>
 
   <footer class="Footer-Container">
-    <div class="Footer-Texto Hel-Font White">Con el respaldo de:</div>
-    <div class="Footer-Imgs">
-      <img class="Footer-Img" src="./images/IntercorpBlanco.png" alt="" />
-      <img class="Footer-Img" src="./images/IdatBlanco.png" alt="" />
-      <img class="Footer-Img" src="./images/ZegelIpaeBlanco.png" alt="" />
+    <div class="Footer">
+      <div class="Footer-Texto Hel-Font White">Con el respaldo de:</div>
+      <div class="Footer-Imgs">
+        <img class="Footer-Img" src="./images/IntercorpBlanco.png" alt="" />
+        <img class="Footer-Img" src="./images/IdatBlanco.png" alt="" />
+        <img class="Footer-Img" src="./images/ZegelIpaeBlanco.png" alt="" />
+      </div>
     </div>
   </footer>
 </template>
@@ -228,29 +233,41 @@ body {
 }
 
 .Header-Container {
+  z-index: 2;
+  margin: 0%;
   height: 500px;
   width: 100%;
+  position: relative;
   background-image: url("./images/HeaderBack.jpg");
   background-size: cover;
 }
 
 .Header-Nav {
+  z-index: 1;
   box-sizing: border-box;
   background-color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  /* position: absolute;
+  margin: 0%; */
   padding-right: 3%;
   padding-left: 3%;
   height: 4rem;
 }
 
 .Nav-Logo {
+  align-self: center;
+  width: 184.28px;
   height: 33px;
 }
 
 .Header-Text {
-  margin-left: 20%;
+  width: 343px;
+  height: 75px;
+  /* z-index: 3; */
+  margin-left: 5%;
   margin-top: 206px;
 }
 
@@ -264,16 +281,18 @@ body {
   margin-left: 1rem;
   margin-right: 1rem;
   font-weight: 700;
-  font-size: 17px;
+  font-size: 16.2px;
+  width: 215px;
+  height: 48px;
 }
 
 .Header-Phone {
   position: fixed;
   background-image: url("./images/mobile.png");
   height: 608px;
-  width: 390px;
+  width: 370px;
   margin-top: -22rem;
-  margin-left: 60%;
+  margin-left: 65%;
   background-size: cover;
   box-sizing: border-box;
   padding: 4rem;
@@ -294,12 +313,13 @@ body {
   margin-top: 1rem;
   margin-left: 1rem;
   margin-right: 0.4rem;
+  border: solid black 10px;
 }
 
 .CheckBox-Text {
   font-size: 12.5px;
   font-weight: 700;
-  margin-right: 1rem;
+  margin-right: 0.3rem;
 }
 
 .Phone-Submit {
@@ -317,7 +337,7 @@ body {
 /*////// Respaldo //////*/
 .Respaldo-Contianer {
   margin-top: 6rem;
-  margin-left: 20%;
+  margin-left: 5%;
   font-family: Arial, Helvetica, sans-serif;
   width: 233px;
   height: 63.08px;
@@ -335,13 +355,13 @@ body {
 
 /*////// Cursos //////*/
 .Cursos-Grid {
+  display: grid;
   column-gap: 5%;
   row-gap: 5%;
-  display: grid;
-  grid-template-columns: repeat(2, 320px);
-
+  grid-template-rows: auto;
+  grid-template-columns: repeat(2, 344px);
   width: 32.5%;
-  margin-left: 20%;
+  margin-left: 5%;
   margin-top: 7%;
 }
 
@@ -351,8 +371,8 @@ body {
   box-sizing: border-box;
   padding: 7%;
   padding-top: 70%;
-  width: 307px;
-  height: 307px;
+  width: 344px;
+  height: 320px;
 }
 
 .Curso-Tema {
@@ -383,7 +403,7 @@ body {
 }
 
 .Mensaje {
-  margin-left: 20%;
+  margin-left: 17%;
   width: 34%;
   height: 12rem;
 }
@@ -401,7 +421,7 @@ body {
 /*////// Beneficios //////*/
 .Beneficios-Container {
   margin-top: 9%;
-  margin-left: 12.8%;
+  margin-left: 5%;
 }
 .Ben {
   font-weight: 700;
@@ -413,11 +433,12 @@ body {
   padding-top: 2%;
   box-sizing: border-box;
   margin-top: 2%;
-  width: 50%;
-  height: 30%;
+  width: 718px;
+  height: 160px;
   background-color: #f2f3f5;
   display: flex;
   justify-content: space-around;
+  align-self: center;
 }
 
 .Beneficio-Titulo {
@@ -439,7 +460,12 @@ body {
 }
 
 .Footer-Text {
+  margin-left: 5%;
   font-weight: 700;
+}
+
+.Footer {
+  margin-left: 5%;
 }
 
 .Footer-Container {
@@ -449,18 +475,119 @@ body {
   box-sizing: border-box;
   padding-top: 1%;
   padding-bottom: 1%;
+
   background-color: black;
 }
 
 .Footer-Imgs {
+  /* margin-left: 5%; */
   margin-top: 6px;
-  width: 13%;
+  width: 233px;
   display: flex;
   justify-content: space-between;
 }
 
 .Footer-Img {
   align-self: center;
+}
+
+@media (max-width: 375px) {
+  .Header-Container {
+    width: 375px;
+    height: 300px;
+  }
+
+  .Header-Text {
+    margin: 0%;
+    width: 343px;
+  }
+
+  .Header-Title {
+    margin-top: 80px;
+    width: 343px;
+    font-size: 150%;
+    font-weight: 900;
+  }
+
+  .Header-Desc {
+    margin-top: 20px;
+    font-weight: 700;
+    width: 202px;
+    height: 48px;
+  }
+
+  .Header-Phone {
+    display: none;
+  }
+
+  .Cursos-Grid {
+    display: grid;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    grid-template-columns: 355px;
+    row-gap: 2%;
+  }
+
+  .item {
+    width: 355px;
+    height: 222px;
+    margin: 0%;
+  }
+
+  .Mensaje {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+  }
+
+  .Mensaje-Container {
+    margin-top: 65%;
+    width: 375px;
+    height: 516px;
+  }
+
+  .Mensaje-Img {
+    margin-top: -30%;
+  }
+
+  .Mensaje-Titulo {
+    width: 375px;
+  }
+
+  .Mensaje-Texto {
+    margin-top: 3%;
+    width: 323px;
+  }
+
+  .Curso-Tema {
+    width: 355px;
+    margin-top: -20%;
+  }
+
+  .Curso-Container {
+  }
+
+  .Beneficios-Container {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+  }
+
+  .Beneficio {
+    margin: 0%;
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: center;
+    width: 355px;
+    height: 108px;
+  }
+
+  .Beneficio-Titulo {
+    margin-left: 20px;
+  }
+
+  .Beneficio-Texto {
+    display: none;
+  }
 }
 </style>
 

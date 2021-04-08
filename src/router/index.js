@@ -50,10 +50,10 @@ const routes = [
   },
 
   {
-    path: '/cur',
-    name: 'Registrarse',
+    path: '/paypal',
+    name: 'PagoPayPal',
 
-    component: () => import('../views/Cur.vue')
+    component: () => import('../views/PagoPaypal.vue')
   },
 ]
 
