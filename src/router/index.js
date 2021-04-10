@@ -55,6 +55,13 @@ const routes = [
 
     component: () => import('../views/PagoPaypal.vue')
   },
+
+  {
+    path: '/form',
+    name: 'Formula',
+
+    component: () => import('../views/Formula.Vue')
+  },
 ]
 
 const router = createRouter({

@@ -45,9 +45,7 @@
               class="Input-Descuento"
               placeholder="Agrega un código de descuento"
             />
-            <div class="Pagar container">
-              <paypal :amount="amount"></paypal>
-            </div>
+            <div class="Pagar container"></div>
           </div>
         </div>
       </div>
@@ -56,13 +54,11 @@
 </template>
 
 <script>
-import Paypal from "../components/PayPal.vue";
 import { mapState } from "vuex";
 
 export default {
   data() {
     return {
-      amount: 10,
       objetos: [],
     };
   },
@@ -71,10 +67,6 @@ export default {
     ...mapState(["cursos"]),
   },
   name: "Pago",
-
-  components: {
-    paypal: Paypal,
-  },
 
   created() {
     console.log(this.objetos);

@@ -21,7 +21,7 @@
         <p class="Iniciar-Sesion col-6" @click="goLogin">Iniciar Sesion</p>
         <p class="Registrarse col-6">Registrarse</p>
         <div class="row">
-          <form class="Iniciar-Form" action="">
+          <form @submit.prevent="checkForm" class="Iniciar-Form" action="">
             <input
               v-model="user.username"
               class="Inicio-Input col-12"
@@ -41,6 +41,7 @@
               placeholder="Contraseña"
             />
             <input
+              v-model="vconfirmPassword"
               class="Inicio-Input col-12"
               type="text"
               placeholder="Repetir Contraseña"
@@ -63,6 +64,11 @@ export default {
   data() {
     return {
       user: {},
+      vname: null,
+      vemail: null,
+      vpassword: null,
+      vconfirmPassword: null,
+      errors: [],
     };
   },
 
@@ -88,6 +94,39 @@ export default {
       );
       const data = await post.json();
       console.log(data);
+    },
+
+    checkForm() {
+      if (
+        this.user.password &&
+        this.user.email &&
+        this.vpassword === this.vpassword
+      ) {
+        return true;
+        goLogin();
+      }
+
+      this.errors = [];
+
+      if (!this.user.username < 0) {
+        this.errors.push("Se require Nombre");
+      }
+
+      if (!this.user.email < 0) {
+        this.errors.push("Se require Email");
+      }
+
+      if (!this.user.password < 0) {
+        this.errors.push("Se require Contraseña");
+      }
+
+      if (!this.vname) {
+        this.errors.push("Se require");
+      }
+
+      if (this.vpassword != this.vconfirmPassword) {
+        this.errors.push("La contraseña no coincide");
+      }
     },
   },
 };

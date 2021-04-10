@@ -199,3 +199,25 @@ export default {
   }
 }
 </style>
+
+
+<style>
+button:focus {
+  outline: 0;
+}
+
+input:focus,
+textarea:focus {
+  outline: 0;
+  border: #b9bbb6 2px solid;
+}
+
+input:focus ~ .label,
+textarea:focus ~ .label,
+input:not(:focus):valid ~ .label,
+textarea:not(:focus):valid ~ .label {
+  top: -10px;
+  left: 0;
+  font-size: 11px;
+}
+</style>
