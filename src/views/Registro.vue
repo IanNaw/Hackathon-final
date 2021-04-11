@@ -33,9 +33,11 @@
               type="text"
               placeholder="Contraseña"
             />
+            <div class="Error">{{ errorMessage }}</div>
             <button @click="login" type="submit" class="Registro-Submit col-12">
               Enviar
             </button>
+            <div class="Change-Password">¿Olvidaste tu contraseña?</div>
           </form>
         </div>
       </header>
@@ -50,7 +52,8 @@ export default {
   data() {
     return {
       user: {},
-
+      loginStatus: 0,
+      errorMessage: " ",
       foobar: null,
     };
   },
@@ -65,25 +68,31 @@ export default {
     },
 
     async login(e) {
-      this.$router.push({ path: "/" });
-
       e.preventDefault();
-      console.log(this.user);
-      const post = await fetch(
-        "https://djangoretofinal.herokuapp.com/auth/login/",
-        {
-          method: "POST",
-          body: JSON.stringify(this.user),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      try {
+        const post = await fetch(
+          "https://djangoretofinal.herokuapp.com/auth/login/",
+          {
+            method: "POST",
+            body: JSON.stringify(this.user),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        // const body = await post
 
-      const data = await post.json();
-      this.$store.state.user = this.$store.state.user = Object.assign(data);
-      this.$store.state.user.id = jwt.decode(data.tokens.access).user_id;
-      console.log(this.$store.state.user);
+        const data = await post.json();
+
+        this.loginStatus = post.status;
+        console.log(this.loginStatus);
+        this.$store.state.user = this.$store.state.user = Object.assign(data);
+        this.$store.state.user.id = jwt.decode(data.tokens.access).user_id;
+        console.log(this.$store.state.user);
+        this.$router.push({ path: "/" });
+      } catch (err) {
+        this.errorMessage = "Intente de nuevo";
+      }
     },
   },
 };
@@ -188,8 +197,14 @@ export default {
   border-radius: 0.5em;
   height: 50px;
   width: 20vw;
-  margin-top: 70vh;
+  margin-top: 63vh;
+  margin-bottom: 2vh;
   background-color: #5640ff;
+}
+
+.Change-Password {
+  font-weight: 700;
+  color: #5640ff;
 }
 
 @media (max-width: 375px) {

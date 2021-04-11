@@ -16,19 +16,29 @@
       <div class="row">
         <div class="col-7">
           <div class="Cursos-Container">
-            <div class="row">
+            <div
+              v-for="(curso, index) in objetos[0]"
+              :key="index"
+              class="Curso row"
+            >
               <div class="col-3">
-                <img src="./images/Curso1.png" alt="" class="Curso-Img" />
+                <div
+                  v-bind:style="{
+                    backgroundImage: 'url(' + curso.imagenes[0].url + ')',
+                  }"
+                  class="Curso-Img"
+                ></div>
               </div>
               <div class="CursoInfo-Container col-9">
                 <div class="Container-Texto">
                   <div class="Otro-Container">
-                    <div class="Titulo-Curso Hel-Font Bold">Gestion</div>
-                    <div class="Precio Hel-Font Bold">s/269.00</div>
+                    <div class="Titulo-Curso Hel-Font Bold">
+                      {{ curso.titulo }}
+                    </div>
+                    <div class="Precio Hel-Font Bold">{{ curso.precio }}</div>
                   </div>
-                  <div class="Descuento Hel-Font">Dto. 25%</div>
+                  <div class="Descuento Hel-Font"></div>
                 </div>
-                <div class="Eliminar Hel-Font Bold">Eliminar</div>
               </div>
             </div>
             <div class="Footer-Pago">
@@ -56,6 +66,20 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      objetos: [],
+    };
+  },
+
+  created() {
+    this.objetos.push(this.$store.state.cursos);
+  },
+};
+</script>
 
 <style>
 .Bold {
@@ -99,6 +123,10 @@
 }
 
 /*  */
+.Curso {
+  margin-bottom: 20px;
+}
+
 .Container-Texto {
   display: flex;
   flex-direction: column;

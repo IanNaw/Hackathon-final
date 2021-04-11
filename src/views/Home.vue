@@ -5,7 +5,7 @@
       <div class="Nav-Box">
         <img
           @click="goCarrito"
-          src="./images/Carrito.png"
+          src="./images/Cart.png"
           alt=""
           class="Nav-Car"
         />
@@ -67,14 +67,17 @@
         value="Quiero Postular"
       />
     </div>
+    <img class="WhatsApp" src="./images/WhatsApp.png" alt="" />
   </div>
 
   <div class="Respaldo-Contianer">
-    <div class="Respaldo">Con el respaldo de:</div>
-    <div class="Respaldo-Imgs">
-      <img class="Respaldo-Img" src="./images/Intercorp.png" alt="" />
-      <img class="Respaldo-Img" src="./images/Idat.png" alt="" />
-      <img class="Respaldo-Img" src="./images/Zegelipae.png" alt="" />
+    <div class="Images-Contianer">
+      <div class="Respaldo">Con el respaldo de:</div>
+      <div class="Respaldo-Imgs">
+        <img class="Respaldo-Img" src="./images/Intercorp.png" alt="" />
+        <img class="Respaldo-Img" src="./images/Idat.png" alt="" />
+        <img class="Respaldo-Img" src="./images/Zegelipae.png" alt="" />
+      </div>
     </div>
   </div>
 
@@ -83,7 +86,7 @@
       v-for="(curso, index) in cursos"
       :key="index"
       class="item"
-      style="background-image: url(${{curso.imagen.url}})"
+      v-bind:style="{ backgroundImage: 'url(' + curso.imagenes[0].url + ')' }"
     >
       <div class="Curso-Tema White">{{ curso.titulo }}</div>
       <div class="Curso-Container">
@@ -401,8 +404,18 @@ body {
   margin-top: 3rem;
 }
 
+.WhatsApp {
+  position: fixed;
+  margin-top: 25%;
+  margin-left: 93%;
+}
+
 /*////// Respaldo //////*/
-.Respaldo-Contianer {
+.Respaldo-Container {
+  display: flex;
+}
+
+.Images-Contianer {
   margin-top: 6rem;
   margin-left: 5%;
   font-family: Arial, Helvetica, sans-serif;
@@ -727,6 +740,9 @@ body {
     margin-left: 1.1rem;
     margin-right: 1, 1rem;
     margin-top: 3rem;
+  }
+  .WhatsApp {
+    margin-left: 85%;
   }
 }
 </style>

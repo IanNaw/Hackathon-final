@@ -2,15 +2,14 @@
   <nav class="Header-Nav">
     <img src="./images/PachaQTec.png" alt="" class="Nav-Logo" />
     <div class="Nav-Box">
-      <img
-        @click="goCarrito"
-        src="./images/Carrito.png"
-        alt=""
-        class="Nav-Car"
-      />
+      <img @click="goCarrito" src="./images/Cart.png" alt="" class="Nav-Car" />
       <img src="./images/MenuHamburguesa.png" alt="" class="Burger-Menu" />
     </div>
   </nav>
+
+  <div class="container">
+    <h3 class="Text-Separacion Bold">Pasarela de Pago</h3>
+  </div>
 
   <div class="container-md">
     <div class="Grid-Container">
@@ -19,18 +18,27 @@
       </div>
       <div class="Curso-Pagar" v-if="!paidFor">
         <div class="Cursos-Container">
-          <div class="Curso">
-            <img src="./images/Curso1.png" alt="" class="Curso-Img" />
+          <div v-for="(curso, index) in objetos[0]" :key="index" class="Curso">
+            <div
+              v-bind:style="{
+                backgroundImage: 'url(' + curso.imagenes[0].url + ')',
+              }"
+              class="Curso-Img"
+            ></div>
             <div class="Curso-Info">
-              <div class="Curso-Titulo Hel-Font">Front end</div>
+              <div class="Curso-Titulo Hel-Font">{{ curso.titulo }}</div>
               <div class="Curso-PriceDel">
                 <p class="Delete Hel-Font">Elimilar</p>
-                <p class="Price Hel-Font">S/ 600</p>
+                <p class="Price Hel-Font">S/ {{ curso.precio }}</p>
               </div>
             </div>
           </div>
         </div>
-        <input type="text" class="Descuento" />
+        <input
+          type="text"
+          class="Descuento"
+          placeholder="Agrega un código de descuento"
+        />
         <div class="PrecioFinal-Container">
           <p class="Precio-Texto Hel-Font">Precio Final</p>
           <p class="Precio-Final Hel-Font">S/600</p>
@@ -38,8 +46,6 @@
       </div>
 
       <div v-if="paidFor">
-        <h1>Noice, you bought a beautiful lamp!</h1>
-
         <img src="https://media.giphy.com/media/j5QcmXoFWl4Q0/giphy.gif" />
       </div>
     </div>
@@ -52,6 +58,7 @@ export default {
   name: "HelloWorld",
   data: function () {
     return {
+      objetos: [],
       loaded: false,
       paidFor: false,
       product: {
@@ -102,6 +109,10 @@ export default {
         })
         .render(this.$refs.paypal);
     },
+  },
+
+  created() {
+    this.objetos.push(this.$store.state.cursos);
   },
 };
 </script>
@@ -175,7 +186,10 @@ body {
 
 .Cursos-Container {
   width: 335px;
-  height: 100px;
+
+  display: grid;
+  grid-template-columns: 355px;
+  column-gap: 20px;
 
   /* justify-content: space-between; */
 }
@@ -189,9 +203,11 @@ body {
   margin-right: 25px;
   width: 133px;
   height: 100px;
+  background-size: cover;
 }
 
 .Curso-Info {
+  width: 182px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -204,7 +220,11 @@ body {
 }
 
 .Descuento {
+  margin-top: 40px;
   width: 355px;
+  height: 50px;
+  border-radius: 0.5em;
+  border: solid 0.5px;
 }
 
 .PrecioFinal-Container {
@@ -224,12 +244,17 @@ body {
 
 .Precio-Texto {
   color: blue;
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 20px;
 }
 
 .Precio-Final {
   color: blue;
   font-weight: 800;
   font-size: 20px;
+}
+
+.Curso {
+  margin-bottom: 10px;
 }
 </style>

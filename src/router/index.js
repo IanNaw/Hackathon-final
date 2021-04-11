@@ -28,12 +28,12 @@ const routes = [
     component: () => import('../views/Carrito.vue')
   },
 
-  {
-    path: '/pago',
-    name: 'Pago',
+  // {
+  //   path: '/pago',
+  //   name: 'Pago',
 
-    component: () => import('../views/Pago.vue')
-  },
+  //   component: () => import('../views/Pago.vue')
+  // },
 
   {
     path: '/comprado',

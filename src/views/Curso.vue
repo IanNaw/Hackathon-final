@@ -52,7 +52,12 @@
       <h2 class="Proposito-Texto">
         {{ curso.titulo_largo }}
       </h2>
-      <img src="" alt="" class="Proposito-Img" />
+      <div
+        v-bind:style="{
+          backgroundImage: 'url(' + curso.imagenes[0].gift + ')',
+        }"
+        class="GIF"
+      ></div>
     </div>
     <div class="Info-Container">
       <h2 class="Info-Titulo">¿ EN QUÉ CONSISTE EL {{ curso.titulo }} ?</h2>
@@ -95,6 +100,17 @@
       </div>
     </div>
   </div>
+
+  <footer class="Footer-Container">
+    <div class="Footer">
+      <div class="Footer-Texto Hel-Font White">Con el respaldo de:</div>
+      <div class="Footer-Imgs">
+        <img class="Footer-Img" src="./images/IntercorpBlanco.png" alt="" />
+        <img class="Footer-Img" src="./images/IdatBlanco.png" alt="" />
+        <img class="Footer-Img" src="./images/ZegelIpaeBlanco.png" alt="" />
+      </div>
+    </div>
+  </footer>
 </template>
 
 
@@ -143,6 +159,14 @@ body {
   color: white;
 }
 
+.GIF {
+  width: 375px;
+  height: 375px;
+  margin-left: 15%;
+  margin-right: 7.5px;
+  margin-bottom: 40px;
+}
+
 /* ///Header CSS// */
 
 .Header-Container {
@@ -168,12 +192,12 @@ body {
 }
 
 .Header-Text {
-  margin-left: 20%;
+  margin-left: 5%;
   margin-top: 206px;
 }
 
 .Header-Title {
-  width: 712px;
+  width: 500px;
   font-size: 350%;
 }
 
@@ -191,7 +215,7 @@ body {
   background-image: url("./images/mobile.png");
   height: 608px;
   width: 390px;
-  margin-top: -20vh;
+  margin-top: -25vh;
   margin-left: 60%;
   background-size: cover;
   box-sizing: border-box;
@@ -234,16 +258,17 @@ body {
 }
 
 .Curso-Container {
-  margin-left: 20%;
+  margin-left: 5%;
   margin-top: 3%;
 }
 
 .Proposito-Container {
-  width: 36%;
+  width: 42%;
 }
 
 .Proposito-Texto {
-  font-size: 130%;
+  font-size: 120%;
+  margin-bottom: 40px;
 }
 
 .Info-Container {
@@ -252,6 +277,7 @@ body {
 }
 
 .Horario-Grid {
+  margin-top: 40px;
   /* border: solid black; */
   display: grid;
   grid-template-rows: repeat(2, auto);
@@ -300,6 +326,38 @@ body {
 
 .Hora {
   height: 65px;
+}
+
+.Footer-Text {
+  margin-left: 5%;
+  font-weight: 700;
+}
+
+.Footer {
+  margin-left: 5%;
+}
+
+.Footer-Container {
+  box-sizing: border-box;
+  padding-left: 2%;
+  margin-top: 7%;
+  box-sizing: border-box;
+  padding-top: 1%;
+  padding-bottom: 1%;
+
+  background-color: black;
+}
+
+.Footer-Imgs {
+  /* margin-left: 5%; */
+  margin-top: 6px;
+  width: 233px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Footer-Img {
+  align-self: center;
 }
 
 @media (max-width: 375px) {

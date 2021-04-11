@@ -16,9 +16,18 @@
       <div class="row">
         <div class="col-md-7 col-sm-12">
           <div class="Cursos-Container">
-            <div v-for="(curso, index) in objetos[0]" :key="index" class="row">
-              <div class="col-md-3 col-sm-4">
-                <img src="./images/Curso1.png" alt="" class="Curso-Img" />
+            <div
+              v-for="(curso, index) in objetos[0]"
+              :key="index"
+              class="row item"
+            >
+              <div
+                v-bind:style="{
+                  backgroundImage: 'url(' + curso.imagenes[0].url + ')',
+                }"
+                class="Curso-Img col-md-3 col-sm-4"
+              >
+                <div class="Curso-Img"></div>
               </div>
               <div class="CursoInfo-Container col-md-9 col-sm-8">
                 <div class="Container-Texto">
@@ -42,7 +51,7 @@
           <div class="Pago container">
             <div class="Subtotal">
               <h3>Sub Total</h3>
-              <h3 class="Total-Num">s/600</h3>
+              <h3 class="Total-Num">s/ {{ total }}</h3>
             </div>
             <input
               type="text"
@@ -50,7 +59,9 @@
               placeholder="Agrega un código de descuento"
             />
             <div class="Pagar-Container">
-              <router-link to="/paypal" class="Pagar">Continuar</router-link>
+              <button @click="goPayPal" class="Pagar White Bold">
+                Continuar
+              </button>
             </div>
           </div>
         </div>
@@ -67,6 +78,7 @@ export default {
     return {
       objetos: [],
       cursos: [],
+      total: 0,
     };
   },
 
@@ -75,14 +87,28 @@ export default {
   },
   name: "Pago",
 
-  methods: {},
+  methods: {
+    goPayPal: function () {
+      this.$router.push({ path: "/paypal" });
+    },
+
+    // getFinalPrice() {
+    //   const value = 0;
+    //   this.$store.state.cursos.forEach((curso) => {
+    //     value += curso.precio * 1;
+    //   });
+    //   this.total = value;
+    // },
+  },
 
   created() {
+    // this.getFinalPrice();
     this.objetos.push(this.$store.state.cursos);
     this.cursos.push(this.objetos[0]);
     console.log(this.$store.state.cursos);
     console.log(this.objetos);
     console.log(this.cursos);
+    console.log(this.total);
   },
 };
 </script>
@@ -135,6 +161,8 @@ export default {
 .Curso-Img {
   width: 100%;
   height: 125px;
+  border-radius: 0.5em;
+
   background: cover;
 }
 
@@ -145,6 +173,10 @@ export default {
 .Otro-Container {
   display: flex;
   justify-content: space-between;
+}
+
+.item {
+  margin-bottom: 20px;
 }
 
 .Titulo-Curso {
@@ -169,6 +201,10 @@ export default {
 }
 
 .Pago {
+}
+
+.Curso-Img {
+  background-size: cover;
 }
 
 .Subtotal {
