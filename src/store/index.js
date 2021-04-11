@@ -2,9 +2,10 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    user: {},
+    user: {
+
+    },
     cursos: [],
-    color: 'azul'
   },
   mutations: {
   },
@@ -13,6 +14,13 @@ export default createStore({
   modules: {
   },
   getters: {
-    getCursos: state => state.cursos
+    // cartTotalProce = (state) => {
+    //   let total = 0;
+
+    //   state.cursos.forEach(item => {
+    //     total += item.curso.precio;
+    //     return total;
+    //   });
+    // }
   }
 })

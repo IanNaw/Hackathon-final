@@ -83,7 +83,7 @@
       v-for="(curso, index) in cursos"
       :key="index"
       class="item"
-      style="background-image: url('${curso.imagen.url}')"
+      style="background-image: url(${{curso.imagen.url}})"
     >
       <div class="Curso-Tema White">{{ curso.titulo }}</div>
       <div class="Curso-Container">
@@ -117,7 +117,7 @@
     <p class="Ben Hel-Font">Beneficio</p>
     <div class="Beneficios">
       <div class="Beneficio">
-        <img src="./images/Personas.png" alt="" />
+        <img class="Beneficio-Img" src="./images/Personas.png" alt="" />
         <div class="Texto-Container Hel-Font">
           <div class="Beneficio-Titulo">Aprende de Expertos</div>
           <div class="Beneficio-Texto">
@@ -128,7 +128,7 @@
         </div>
       </div>
       <div class="Beneficio">
-        <img src="./images/Monitor.png" alt="" />
+        <img class="Beneficio-Img" src="./images/Monitor.png" alt="" />
         <div class="Texto-Container Hel-Font">
           <div class="Beneficio-Titulo">Clases Virtuales</div>
           <div class="Beneficio-Texto">
@@ -152,6 +152,53 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="Encuesta-Media">
+    <p class="Phone-Info Hel-Font">
+      Postula y obten un 10% de descuento en el programa
+    </p>
+
+    <input
+      v-model="formulario.nombre"
+      type="text"
+      class="Phone-Input Hel-Font"
+      placeholder="NOMBRE"
+    />
+    <input
+      v-model="formulario.celular"
+      type="text"
+      class="Phone-Input Hel-Font"
+      placeholder="CELULAR"
+    />
+    <input
+      v-model="formulario.correo"
+      type="text"
+      class="Phone-Input"
+      placeholder="CORREO ELECTRÓNICO"
+    />
+    <input
+      v-model="formulario.programa"
+      type="text"
+      class="Phone-Input Hel-Font"
+      placeholder="PROGRAMA"
+    />
+
+    <input
+      v-model="formulario.terminos"
+      type="checkbox"
+      class="Phone-CheckBox"
+      name="CheckBox"
+    />
+    <label class="CheckBox-Text Hel-Font" for="CheckBox "
+      >Acepto las politicas de privacidad</label
+    >
+
+    <input
+      type="submit"
+      class="Phone-Submit Hel-Font"
+      value="Quiero Postular"
+    />
   </div>
 
   <footer class="Footer-Container">
@@ -203,6 +250,19 @@ export default {
       );
     },
 
+    async postCurso() {
+      const post = await fetch(
+        "https://djangoretofinal.herokuapp.com/interesado/v1/interesados/",
+        {
+          method: "POST",
+          body: JSON.stringify(this.cursos[cursoIndex]),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    },
+
     addToCart: function (e) {
       const cursoID = Number(e.target.dataset.id);
       const cursoIndex = this.cursos.findIndex((curso) => curso.id === cursoID);
@@ -212,7 +272,7 @@ export default {
   },
   created() {
     this.getCurso();
-    // window.store = this.$store.state; ///////////////////////BORRAR!!!!!!!!
+    window.store = this.$store.state; ///////////////////////BORRAR!!!!!!!!
   },
 };
 </script>
@@ -240,6 +300,13 @@ body {
   position: relative;
   background-image: url("./images/HeaderBack.jpg");
   background-size: cover;
+}
+
+.Nav-Box {
+  width: 110px;
+
+  display: flex;
+  justify-content: space-between;
 }
 
 .Header-Nav {
@@ -291,7 +358,7 @@ body {
   background-image: url("./images/mobile.png");
   height: 608px;
   width: 370px;
-  margin-top: -22rem;
+  margin-top: -10rem;
   margin-left: 65%;
   background-size: cover;
   box-sizing: border-box;
@@ -396,15 +463,22 @@ body {
 
 /*////// Mensaje //////*/
 .Mensaje-Container {
-  margin-top: 2rem;
+  margin-top: 15rem;
   width: 100%;
   height: 17rem;
+  display: flex;
   background-color: #3015fd;
 }
 
+.Mensaje-Img {
+  width: 323px;
+  height: 418.89px;
+  margin-top: -75px;
+  margin-left: -120px;
+}
+
 .Mensaje {
-  margin-left: 17%;
-  width: 34%;
+  width: 563px;
   height: 12rem;
 }
 
@@ -415,6 +489,7 @@ body {
 }
 
 .Mensaje-Texto {
+  font-size: 15px;
   margin-top: 3%;
 }
 
@@ -457,6 +532,10 @@ body {
 
 .Beneficio-Img {
   align-self: center;
+}
+
+.Encuesta-Media {
+  display: none;
 }
 
 .Footer-Text {
@@ -566,6 +645,25 @@ body {
   .Curso-Container {
   }
 
+  .Mensaje-Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .Mensaje-Img {
+    width: 241px;
+    height: 311.89px;
+    margin-top: -75px;
+    /* margin-left: -120px; */
+  }
+
+  .Mensaje {
+    width: 323px;
+    height: 12rem;
+  }
+
   .Beneficios-Container {
     margin-left: 2.5%;
     margin-right: 2.5%;
@@ -573,6 +671,7 @@ body {
 
   .Beneficio {
     margin: 0%;
+    margin-bottom: 10px;
     box-sizing: border-box;
     padding-left: 20px;
     padding-right: 20px;
@@ -587,6 +686,47 @@ body {
 
   .Beneficio-Texto {
     display: none;
+  }
+
+  .Encuesta-Media {
+    display: block;
+    width: 100%;
+  }
+
+  .Phone-Input {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    display: block;
+    border: solid #b9bbb6 0.5px;
+    border-radius: 0.5em;
+    height: 50px;
+    width: 100%;
+  }
+
+  .Phone-CheckBox {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 0.4rem;
+    border: solid black 10px;
+  }
+
+  .CheckBox-Text {
+    font-size: 12.5px;
+    font-weight: 700;
+    margin-right: 0.3rem;
+  }
+
+  .Phone-Submit {
+    width: 100%;
+    height: 50px;
+    background-color: #5640ff;
+    color: white;
+    border: solid #5640ff 0.5px;
+    border-radius: 0.5em;
+    margin-left: 1.1rem;
+    margin-right: 1, 1rem;
+    margin-top: 3rem;
   }
 }
 </style>

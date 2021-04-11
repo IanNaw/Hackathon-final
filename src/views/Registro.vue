@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import jwt from "jsonwebtoken";
 export default {
   name: "Registro",
   data() {
@@ -55,11 +56,6 @@ export default {
   },
 
   methods: {
-    // submit() {
-    //   //if you want to send any data into server before redirection then you can do it here
-    //   this.$router.push("/" + this.foobar);
-    // },
-
     goRegister: function () {
       this.$router.push({ path: "/registrarse" });
     },
@@ -83,8 +79,11 @@ export default {
           },
         }
       );
+
       const data = await post.json();
-      console.log(data);
+      this.$store.state.user = this.$store.state.user = Object.assign(data);
+      this.$store.state.user.id = jwt.decode(data.tokens.access).user_id;
+      console.log(this.$store.state.user);
     },
   },
 };

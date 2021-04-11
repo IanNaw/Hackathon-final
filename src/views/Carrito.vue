@@ -14,17 +14,21 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-7">
+        <div class="col-md-7 col-sm-12">
           <div class="Cursos-Container">
-            <div class="row">
-              <div class="col-3">
+            <div v-for="(curso, index) in objetos[0]" :key="index" class="row">
+              <div class="col-md-3 col-sm-4">
                 <img src="./images/Curso1.png" alt="" class="Curso-Img" />
               </div>
-              <div class="CursoInfo-Container col-9">
+              <div class="CursoInfo-Container col-md-9 col-sm-8">
                 <div class="Container-Texto">
                   <div class="Otro-Container">
-                    <div class="Titulo-Curso Hel-Font Bold">Registro</div>
-                    <div class="Precio Hel-Font Bold">s/ 600</div>
+                    <div class="Titulo-Curso Hel-Font Bold">
+                      {{ curso.titulo }}
+                    </div>
+                    <div class="Precio Hel-Font Bold">
+                      s/ {{ curso.precio }}
+                    </div>
                   </div>
                   <div class="Descuento Hel-Font"></div>
                 </div>
@@ -33,8 +37,8 @@
             </div>
           </div>
         </div>
-        <div class="col-1"></div>
-        <div class="col-4">
+        <div class="col-md-1 col-sm-12"></div>
+        <div class="col-md-4 col-sm-12">
           <div class="Pago container">
             <div class="Subtotal">
               <h3>Sub Total</h3>
@@ -45,7 +49,9 @@
               class="Input-Descuento"
               placeholder="Agrega un código de descuento"
             />
-            <div class="Pagar container"></div>
+            <div class="Pagar-Container">
+              <router-link to="/paypal" class="Pagar">Continuar</router-link>
+            </div>
           </div>
         </div>
       </div>
@@ -60,6 +66,7 @@ export default {
   data() {
     return {
       objetos: [],
+      cursos: [],
     };
   },
 
@@ -68,8 +75,14 @@ export default {
   },
   name: "Pago",
 
+  methods: {},
+
   created() {
+    this.objetos.push(this.$store.state.cursos);
+    this.cursos.push(this.objetos[0]);
+    console.log(this.$store.state.cursos);
     console.log(this.objetos);
+    console.log(this.cursos);
   },
 };
 </script>
@@ -169,17 +182,24 @@ export default {
   margin-top: 5%;
   width: 100%;
   border: solid #b9bbb6 0.5px;
-  height: 5vh;
+  height: 50px;
   border-radius: 0.5em;
 }
 
 .Pagar {
   margin-top: 10%;
   width: 100%;
-  /* background-color: blue;
-  border: solid blue 0.5px; */
+  background-color: blue;
+  border: solid blue 0.5px;
   height: 5vh;
   border-radius: 0.5em;
+}
+
+@media (min-width: 375px) {
+  .Curso-Img {
+    width: 133px;
+    height: 100px;
+  }
 }
 </style>
 
