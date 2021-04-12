@@ -25,11 +25,11 @@
                 v-bind:style="{
                   backgroundImage: 'url(' + curso.imagenes[0].url + ')',
                 }"
-                class="Curso-Img col-md-3 col-sm-4"
+                class="Curso-Img col-md-3 col-sm-3"
               >
                 <div class="Curso-Img"></div>
               </div>
-              <div class="CursoInfo-Container col-md-9 col-sm-8">
+              <div class="CursoInfo-Container col-md-9 col-sm-9">
                 <div class="Container-Texto">
                   <div class="Otro-Container">
                     <div class="Titulo-Curso Hel-Font Bold">

@@ -81,6 +81,10 @@
     </div>
   </div>
 
+  <div class="Antes-Gird Hel-Font">
+    Conoce nuestros Programas de Especialización
+  </div>
+
   <div class="Cursos-Grid">
     <div
       v-for="(curso, index) in cursos"
@@ -93,9 +97,10 @@
         <div class="Curso-Agregar White" :data-id="curso.id" @click="addToCart">
           Agregar
         </div>
-        <router-link :to="`/curso/${curso.id}`" class="Curso-Ver White Hel-Font"
-          >Ver más</router-link
-        >
+        <div class="Curso-Ver White Hel-Font">
+          <img class="Mas-Img" src="./images/Mas.png" alt="" />
+          <p class="Ver-Mas">Ver Más</p>
+        </div>
       </div>
     </div>
   </div>
@@ -288,7 +293,7 @@ body {
 }
 
 .Hel-Font {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .White {
@@ -297,7 +302,7 @@ body {
 
 .Header-Container {
   z-index: 2;
-  margin: 0%;
+  /* margin-top: -13rem; */
   height: 500px;
   width: 100%;
   position: relative;
@@ -313,6 +318,7 @@ body {
 }
 
 .Header-Nav {
+  box-sizing: border-box;
   z-index: 1;
   box-sizing: border-box;
   background-color: black;
@@ -320,8 +326,8 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  /* position: absolute;
-  margin: 0%; */
+  position: fixed;
+
   padding-right: 3%;
   padding-left: 3%;
   height: 4rem;
@@ -334,24 +340,35 @@ body {
 }
 
 .Header-Text {
-  width: 343px;
+  width: 712px;
+  font-weight: 400;
   height: 75px;
-  /* z-index: 3; */
+  z-index: 3;
+
   margin-left: 5%;
-  margin-top: 206px;
+  /* margin-top: 200px; */
+}
+
+.Header-Desc {
+  font-weight: 600;
+  font-size: 18px;
 }
 
 .Header-Title {
+  padding-top: 210px;
+  font-weight: 700;
   width: 712px;
-  font-size: 350%;
+  margin-bottom: 40px;
+  font-size: 320%;
 }
 
 /*////// Phone //////*/
 .Phone-Info {
+  margin-top: 20px;
   margin-left: 1rem;
   margin-right: 1rem;
-  font-weight: 700;
-  font-size: 16.2px;
+  font-weight: 600;
+  font-size: 15px;
   width: 215px;
   height: 48px;
 }
@@ -361,7 +378,7 @@ body {
   background-image: url("./images/mobile.png");
   height: 608px;
   width: 370px;
-  margin-top: -10rem;
+  margin-top: 0;
   margin-left: 65%;
   background-size: cover;
   box-sizing: border-box;
@@ -373,10 +390,15 @@ body {
   margin-left: 1rem;
   margin-right: 1rem;
   display: block;
+  font-size: 12px;
   border: solid #b9bbb6 0.5px;
   border-radius: 0.5em;
   height: 50px;
   width: 216px;
+}
+
+.Phone-Input::placeholder {
+  padding-left: 6px;
 }
 
 .Phone-CheckBox {
@@ -387,14 +409,15 @@ body {
 }
 
 .CheckBox-Text {
-  font-size: 12.5px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 600;
   margin-right: 0.3rem;
 }
 
 .Phone-Submit {
   width: 216px;
   height: 50px;
+  font-weight: 700;
   background-color: #5640ff;
   color: white;
   border: solid #5640ff 0.5px;
@@ -411,12 +434,16 @@ body {
 }
 
 /*////// Respaldo //////*/
+.Respaldo {
+  font-size: 12px;
+}
+
 .Respaldo-Container {
   display: flex;
 }
 
 .Images-Contianer {
-  margin-top: 6rem;
+  margin-top: 3rem;
   margin-left: 5%;
   font-family: Arial, Helvetica, sans-serif;
   width: 233px;
@@ -434,6 +461,13 @@ body {
 }
 
 /*////// Cursos //////*/
+.Antes-Gird {
+  margin-top: 130px;
+  margin-left: 5%;
+  font-size: 20px;
+  font-weight: 750;
+}
+
 .Cursos-Grid {
   display: grid;
   column-gap: 5%;
@@ -442,7 +476,7 @@ body {
   grid-template-columns: repeat(2, 344px);
   width: 32.5%;
   margin-left: 5%;
-  margin-top: 7%;
+  margin-top: 30px;
 }
 
 .item {
@@ -471,7 +505,23 @@ body {
 }
 
 .Curso-Ver {
+  box-sizing: border-box;
+  width: 94px;
+  height: 24px;
+  display: flex;
+  font-weight: 700;
+  font-size: 15px;
   text-decoration: none;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Mas-Img {
+  align-self: center;
+}
+
+.Ver-Mas {
+  padding-top: 17px;
 }
 
 /*////// Mensaje //////*/
@@ -537,10 +587,13 @@ body {
 
 .Texto-Container {
   width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .Beneficio-Texto {
-  font-size: 90%;
+  font-size: 85%;
 }
 
 .Beneficio-Img {
@@ -557,6 +610,7 @@ body {
 }
 
 .Footer {
+  font-size: 12px;
   margin-left: 5%;
 }
 
@@ -595,7 +649,7 @@ body {
   }
 
   .Header-Title {
-    margin-top: 80px;
+    /* margin-top: 80px; */
     width: 343px;
     font-size: 150%;
     font-weight: 900;
@@ -621,6 +675,7 @@ body {
   }
 
   .item {
+    background-size: cover;
     width: 355px;
     height: 222px;
     margin: 0%;
@@ -632,21 +687,22 @@ body {
   }
 
   .Mensaje-Container {
-    margin-top: 65%;
+    margin-top: 60%;
     width: 375px;
     height: 516px;
   }
 
   .Mensaje-Img {
     margin-top: -30%;
+    margin-left: 5px;
   }
 
   .Mensaje-Titulo {
-    width: 375px;
+    margin-top: -100px;
+    width: 323px;
   }
 
   .Mensaje-Texto {
-    margin-top: 3%;
     width: 323px;
   }
 
@@ -656,9 +712,11 @@ body {
   }
 
   .Curso-Container {
+    width: 355px;
   }
 
   .Mensaje-Container {
+    width: 355px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -674,7 +732,7 @@ body {
 
   .Mensaje {
     width: 323px;
-    height: 12rem;
+    /* height: 12rem; */
   }
 
   .Beneficios-Container {
@@ -708,8 +766,8 @@ body {
 
   .Phone-Input {
     margin-top: 1rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    /* margin-left: 1rem;
+    margin-right: 1rem; */
     display: block;
     border: solid #b9bbb6 0.5px;
     border-radius: 0.5em;
@@ -718,8 +776,8 @@ body {
   }
 
   .Phone-CheckBox {
-    margin-top: 1rem;
-    margin-left: 1rem;
+    /* margin-top: 1rem;
+    margin-left: 1rem; */
     margin-right: 0.4rem;
     border: solid black 10px;
   }
@@ -738,11 +796,12 @@ body {
     border: solid #5640ff 0.5px;
     border-radius: 0.5em;
     margin-left: 1.1rem;
-    margin-right: 1, 1rem;
+    margin-right: 1.1rem;
     margin-top: 3rem;
   }
   .WhatsApp {
-    margin-left: 85%;
+    margin-left: 76%;
+    margin-top: 50vh;
   }
 }
 </style>
