@@ -1,13 +1,22 @@
 <template>
   <div class="C row">
-    <div class="Imagen-Intro col-xl-8 col-l-7 col-md-6 col-sm-0">
-      <img class="Image-Top" src="./images/PachaQTec.png" alt="" />
+    <div class="Imagen-Intro col-xl-8 col-l-7 col-md-7">
+      <div class="Img-Pacha">
+        <img class="Image-Top" src="./images/PachaQTec.png" alt="" />
+      </div>
       <div class="Texto-Container">
-        <h1 class="Titulo White">¡Explota todo tu potencial tecnológico!</h1>
-        <h3 class="Texto White">Con nuestros programas de especialización</h3>
+        <div class="Titulo-Container">
+          <h1 class="Titulo White Hel-Font">
+            ¡Explota todo tu potencial tecnológico!
+          </h1>
+
+          <h3 class="Texto White Hel-Font">
+            Con nuestros programas de especialización
+          </h3>
+        </div>
       </div>
       <footer class="Footer">
-        <div class="Footer-Text">Con el respaldo de:</div>
+        <div class="Footer-Text Hel-Font">Con el respaldo de:</div>
         <div class="Footer-Imgs">
           <img class="Footer-Img" src="./images/IntercorpBlanco.png" alt="" />
           <img class="Footer-Img" src="./images/IdatBlanco.png" alt="" />
@@ -15,29 +24,83 @@
         </div>
       </footer>
     </div>
-    <div class="col-xl-4 col-l-5 col-md-6 col-sm-12">
+    <div class="Formulario col-xl-4 col-l-5 col-md-5">
       <header class="Header row">
-        <div class="Iniciar-Sesion col-6">Iniciar Sesion</div>
-        <div @click="goRegister" class="Registrarse col-6">Registrarse</div>
+        <div class="Line row">
+          <div class="Iniciar-Sesion col-6 Hel-Font">
+            <div class="Inicio">Iniciar Seción</div>
+          </div>
+          <div @click="goRegister" class="Registrarse col-6 Hel-Font">
+            <div class="Registrarse">Registrarse</div>
+          </div>
+        </div>
         <div class="row">
           <form class="Iniciar-Form">
             <input
               v-model="user.email"
-              class="Inicio-Input col-12"
+              class="Inicio-Input Hel-Font col-12"
               type="text"
-              placeholder="Correo electrónico"
+              placeholder="Correo electrónico "
             />
             <input
               v-model="user.password"
-              class="Inicio-Input col-12"
+              class="Inicio-Input col-12 Hel-Font"
               type="text"
               placeholder="Contraseña"
             />
             <div class="Error">{{ errorMessage }}</div>
-            <button @click="login" type="submit" class="Registro-Submit col-12">
-              Enviar
+            <button
+              @click="login"
+              type="submit"
+              class="Registro-Submit col-12 Hel-Font"
+            >
+              Ingresar
             </button>
-            <div class="Change-Password">¿Olvidaste tu contraseña?</div>
+
+            <div class="Change-Password Hel-Font">
+              ¿Olvidaste tu contraseña?
+            </div>
+          </form>
+        </div>
+      </header>
+    </div>
+
+    <div class="Media-900">
+      <header class="Header row">
+        <div class="Line row">
+          <div class="Iniciar-Sesion col-6 Hel-Font">
+            <div class="Inicio">Iniciar Seción</div>
+          </div>
+          <div @click="goRegister" class="Registrarse col-6 Hel-Font">
+            <div class="Registrarse">Registrarse</div>
+          </div>
+        </div>
+        <div class="row">
+          <form class="Iniciar-Form">
+            <input
+              v-model="user.email"
+              class="Inicio-Input Hel-Font col-12"
+              type="text"
+              placeholder="Correo electrónico "
+            />
+            <input
+              v-model="user.password"
+              class="Inicio-Input col-12 Hel-Font"
+              type="text"
+              placeholder="Contraseña"
+            />
+            <div class="Error">{{ errorMessage }}</div>
+            <button
+              @click="login"
+              type="submit"
+              class="Registro-Submit col-12 Hel-Font"
+            >
+              Ingresar
+            </button>
+
+            <div class="Change-Password Hel-Font">
+              ¿Olvidaste tu contraseña?
+            </div>
           </form>
         </div>
       </header>
@@ -104,6 +167,10 @@ export default {
   color: white;
 }
 
+.Hel-Font {
+  font-family: "Poppins", sans-serif;
+}
+
 .C {
   width: 100vw;
   height: 100vh;
@@ -112,28 +179,57 @@ export default {
 }
 
 .Imagen-Intro {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  /* display: flex; */
+  /* flex-direction: column;
+  justify-content: space-around; */
   box-sizing: border-box;
   padding-right: 20vw;
   padding-left: 5vw;
   padding-top: 2vh;
-  scroll-padding-bottom: 2vh;
+  /* scroll-padding-bottom: 2vh; */
   /* height: 100vh; */
   background-size: cover;
   background-image: url(./images/RegBack.png);
 }
 
 .Image-Top {
-  width: 9vw;
+  margin-top: 25px;
+  height: 33px;
+  width: 184.28px;
   align-self: center;
 }
 
 .Texto-Container {
+  margin-top: 200px;
+  width: 800px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Titulo-Container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.Titulo {
+  text-align: end;
+  width: 343px;
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.Texto {
+  direction: rtl;
+  width: 202px;
+  font-size: 15px;
+  font-weight: 700;
 }
 
 .Footer-Text {
+  font-size: 10px;
+  margin-top: 155px;
   font-weight: 700;
   color: white;
 }
@@ -153,20 +249,39 @@ export default {
 }
 
 .Header {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.Line {
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-bottom: solid gray 2px;
 }
 
 .Iniciar-Sesion {
-  height: 5vh;
-  border-bottom: solid gray 3px;
+  box-sizing: border-box;
+
+  font-weight: 800;
+  height: 60px;
+
+  font-size: 13.5px;
+  border-bottom: solid black 5px;
+
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.Inicio {
+}
+
 .Registrarse {
+  font-weight: 800;
+  font-size: 13.5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -186,18 +301,23 @@ export default {
   border: solid #b9bbb6 0.5px;
   border-radius: 0.5em;
   height: 50px;
-  width: 25vw;
+  width: 100%;
+  font-size: 13px;
+}
+
+.Inicio-Input::placeholder {
+  padding-left: 8px;
 }
 
 .Registro-Submit {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 700;
   color: white;
   border: solid #5640ff 0.5px;
   border-radius: 0.5em;
   height: 50px;
-  width: 20vw;
-  margin-top: 63vh;
+  width: 100%;
+  margin-top: 58vh;
   margin-bottom: 2vh;
   background-color: #5640ff;
 }
@@ -207,12 +327,41 @@ export default {
   color: #5640ff;
 }
 
+@media (max-width: 1199px) {
+  .Texto-Container {
+    margin-top: 200px;
+    width: 47vw;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 900px) {
+  .Imagen-Intro {
+    display: none;
+  }
+
+  .Formulario {
+    display: none;
+  }
+  .Media-900 {
+    display: block;
+  }
+
+  .Registro-Submit {
+  }
+}
+
 @media (max-width: 375px) {
   .Imagen-Intro {
     display: none;
   }
+
+  .Registro-Submit {
+  }
 }
 </style>
+
 
 
 <style>

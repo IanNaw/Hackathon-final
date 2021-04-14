@@ -429,7 +429,7 @@ body {
 
 .WhatsApp {
   position: fixed;
-  margin-top: 25%;
+  margin-top: 30%;
   margin-left: 93%;
 }
 

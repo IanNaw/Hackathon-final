@@ -41,7 +41,13 @@
                   </div>
                   <div class="Descuento Hel-Font"></div>
                 </div>
-                <div class="Eliminar Hel-Font Bold">Eliminar</div>
+                <div
+                  @click="delItem"
+                  class="Eliminar Hel-Font Bold"
+                  :data-numero="index"
+                >
+                  Eliminar
+                </div>
               </div>
             </div>
           </div>
@@ -90,6 +96,13 @@ export default {
   methods: {
     goPayPal: function () {
       this.$router.push({ path: "/paypal" });
+    },
+
+    delItem: function (e) {
+      console.log(e.target.dataset.numero);
+      const position = e.target.dataset.numero;
+
+      this.$store.state.cursos.splice(position, 1);
     },
 
     // getFinalPrice() {
