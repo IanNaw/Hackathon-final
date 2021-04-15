@@ -57,10 +57,10 @@ const routes = [
   },
 
   {
-    path: '/form',
-    name: 'Formula',
+    path: '/nav',
+    name: 'NavBar',
 
-    component: () => import('../views/Formula.Vue')
+    component: () => import('../views/NavBar.vue')
   },
 ]
 

@@ -3,9 +3,26 @@
     <nav class="Header-Nav">
       <img src="./images/PachaQTec.png" alt="" class="Nav-Logo" />
       <div class="Nav-Box">
-        <img src="./images/Carrito.png" alt="" class="Nav-Car" />
-        <img src="./images/MenuHamburguesa.png" alt="" class="Burger-Menu" />
+        <img
+          @click="goCarrito"
+          src="./images/Cart.png"
+          alt=""
+          class="Nav-Car"
+        />
+        <img
+          src="./images/MenuHamburguesa.png"
+          alt=""
+          class="Burger-Menu"
+          @click="abrirMenu"
+        />
       </div>
+
+      <ul :class="className">
+        <li @click="goHome" class="li">Home</li>
+        <li @click="goLogIn" class="li">LogIn</li>
+        <li @click="goCarrito" class="li">Carrito</li>
+        <li @click="goPagar" class="li">Pagar</li>
+      </ul>
     </nav>
 
     <div class="container">
@@ -85,6 +102,7 @@ export default {
       objetos: [],
       cursos: [],
       total: 0,
+      className: "ulInactivo",
     };
   },
 
@@ -94,6 +112,29 @@ export default {
   name: "Pago",
 
   methods: {
+    abrirMenu() {
+      this.className === "ulInactivo"
+        ? (this.className = "ulActivo")
+        : (this.className = "ulInactivo");
+      console.log(this.claseUl);
+    },
+
+    goHome: function () {
+      this.$router.push({ path: "/" });
+    },
+
+    goLogin: function () {
+      this.$router.push({ path: "/registro" });
+    },
+
+    goPagar: function () {
+      this.$router.push({ path: "/paypal" });
+    },
+
+    goCarrito: function () {
+      this.$router.push({ path: "/carrito" });
+    },
+
     goPayPal: function () {
       this.$router.push({ path: "/paypal" });
     },
@@ -127,7 +168,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .Bold {
   font-weight: bold;
 }
@@ -145,23 +186,38 @@ export default {
   width: 100%;
 }
 
+.Nav-Box {
+  width: 110px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
 .Header-Nav {
+  margin-top: -89px;
+  box-sizing: border-box;
+  z-index: 1;
   box-sizing: border-box;
   background-color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  position: fixed;
+
   padding-right: 3%;
   padding-left: 3%;
   height: 4rem;
 }
 
 .Nav-Logo {
+  align-self: center;
+  width: 184.28px;
   height: 33px;
 }
 
 .Text-Separacion {
-  margin-top: 2%;
+  margin-top: 8%;
   margin-bottom: 5%;
 }
 
@@ -242,6 +298,52 @@ export default {
   border: solid blue 0.5px;
   height: 5vh;
   border-radius: 0.5em;
+}
+
+/*////// Menu //////*/
+
+.ulInactivo {
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-decoration: none;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: silver;
+  top: 4rem;
+  left: -100%;
+  text-align: center;
+  transition: all 0.5s;
+}
+
+.li {
+  margin-top: 20px;
+  font-weight: 800;
+  display: block;
+  height: 50px;
+  font-size: 20px;
+  border-bottom: solid black 2px;
+}
+
+.li:hover {
+  color: slateblue;
+}
+
+.ulActivo {
+  z-index: 3;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-decoration: none;
+  position: fixed;
+  width: 230px;
+  height: 100vh;
+  background: silver;
+  top: 4rem;
+  left: 0;
+  text-align: center;
+  transition: all 0.5s;
 }
 
 @media (min-width: 375px) {

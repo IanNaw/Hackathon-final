@@ -3,8 +3,20 @@
     <img src="./images/PachaQTec.png" alt="" class="Nav-Logo" />
     <div class="Nav-Box">
       <img @click="goCarrito" src="./images/Cart.png" alt="" class="Nav-Car" />
-      <img src="./images/MenuHamburguesa.png" alt="" class="Burger-Menu" />
+      <img
+        src="./images/MenuHamburguesa.png"
+        alt=""
+        class="Burger-Menu"
+        @click="abrirMenu"
+      />
     </div>
+
+    <ul :class="className">
+      <li @click="goHome" class="li">Home</li>
+      <li @click="goLogIn" class="li">LogIn</li>
+      <li @click="goCarrito" class="li">Carrito</li>
+      <li @click="goPagar" class="li">Pagar</li>
+    </ul>
   </nav>
 
   <div class="container">
@@ -59,6 +71,7 @@ export default {
   data: function () {
     return {
       objetos: [],
+      className: "ulInactivo",
       loaded: false,
       paidFor: false,
       product: {
@@ -72,6 +85,29 @@ export default {
     this.setLoaded();
   },
   methods: {
+    abrirMenu() {
+      this.className === "ulInactivo"
+        ? (this.className = "ulActivo")
+        : (this.className = "ulInactivo");
+      console.log(this.claseUl);
+    },
+
+    goHome: function () {
+      this.$router.push({ path: "/" });
+    },
+
+    goLogin: function () {
+      this.$router.push({ path: "/registro" });
+    },
+
+    goPagar: function () {
+      this.$router.push({ path: "/paypal" });
+    },
+
+    goCarrito: function () {
+      this.$router.push({ path: "/carrito" });
+    },
+
     setLoaded: function () {
       this.loaded = true;
 
@@ -119,9 +155,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
+/* h3 {
   margin: 40px 0 0;
-}
+} */
 ul {
   list-style-type: none;
   padding: 0;
@@ -147,7 +183,15 @@ body {
   color: white;
 }
 
+.Nav-Box {
+  width: 110px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
 .Header-Nav {
+  box-sizing: border-box;
   z-index: 1;
   box-sizing: border-box;
   background-color: black;
@@ -155,8 +199,8 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  /* position: absolute;
-  margin: 0%; */
+  position: fixed;
+
   padding-right: 3%;
   padding-left: 3%;
   height: 4rem;
@@ -256,5 +300,55 @@ body {
 
 .Curso {
   margin-bottom: 10px;
+}
+
+.PayPalButton {
+  z-index: 0;
+}
+
+/*////// Menu //////*/
+
+.ulInactivo {
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-decoration: none;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: silver;
+  top: 4rem;
+  left: -100%;
+  text-align: center;
+  transition: all 0.5s;
+}
+
+.li {
+  margin-top: 20px;
+  font-weight: 800;
+  display: block;
+  height: 50px;
+  font-size: 20px;
+  border-bottom: solid black 2px;
+}
+
+.li:hover {
+  color: slateblue;
+}
+
+.ulActivo {
+  z-index: 3;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-decoration: none;
+  position: fixed;
+  width: 230px;
+  height: 100vh;
+  background: silver;
+  top: 4rem;
+  left: 0;
+  text-align: center;
+  transition: all 0.5s;
 }
 </style>

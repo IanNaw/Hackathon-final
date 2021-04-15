@@ -9,8 +9,20 @@
           alt=""
           class="Nav-Car"
         />
-        <img src="./images/MenuHamburguesa.png" alt="" class="Burger-Menu" />
+        <img
+          src="./images/MenuHamburguesa.png"
+          alt=""
+          class="Burger-Menu"
+          @click="abrirMenu"
+        />
       </div>
+
+      <ul :class="className">
+        <li @click="goHome" class="li">Home</li>
+        <li @click="goLogIn" class="li">LogIn</li>
+        <li @click="goCarrito" class="li">Carrito</li>
+        <li @click="goPagar" class="li">Pagar</li>
+      </ul>
     </nav>
     <div class="Header-Text">
       <h1 class="Header-Title Hel-Font White">
@@ -228,10 +240,30 @@ export default {
       cursos: [],
       formulario: {},
       carrito: {},
+      className: "ulInactivo",
     };
   },
 
   methods: {
+    abrirMenu() {
+      this.className === "ulInactivo"
+        ? (this.className = "ulActivo")
+        : (this.className = "ulInactivo");
+      console.log(this.claseUl);
+    },
+
+    goHome: function () {
+      this.$router.push({ path: "/" });
+    },
+
+    goLogin: function () {
+      this.$router.push({ path: "/registro" });
+    },
+
+    goPagar: function () {
+      this.$router.push({ path: "/paypal" });
+    },
+
     goCarrito: function () {
       this.$router.push({ path: "/carrito" });
     },
@@ -362,6 +394,51 @@ body {
   font-size: 320%;
 }
 
+/*////// Menu //////*/
+
+.ulInactivo {
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-decoration: none;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: silver;
+  top: 4rem;
+  left: -100%;
+  text-align: center;
+  transition: all 0.5s;
+}
+
+.li {
+  margin-top: 20px;
+  font-weight: 800;
+  display: block;
+  height: 50px;
+  font-size: 20px;
+  border-bottom: solid black 2px;
+}
+
+.li:hover {
+  color: slateblue;
+}
+
+.ulActivo {
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-decoration: none;
+  position: fixed;
+  width: 230px;
+  height: 100vh;
+  background: silver;
+  top: 4rem;
+  left: 0;
+  text-align: center;
+  transition: all 0.5s;
+}
+
 /*////// Phone //////*/
 .Phone-Info {
   margin-top: 20px;
@@ -429,7 +506,7 @@ body {
 
 .WhatsApp {
   position: fixed;
-  margin-top: 30%;
+  margin-top: 37%;
   margin-left: 93%;
 }
 
